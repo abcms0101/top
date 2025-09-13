@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!以下の全てのmetaタグは絶対に消さないでください。>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name='description' content='Description, ms0101のトップページです。'>
+<!この下にあるmetaタグは編集移動消去しないでください。>
+<meta name="msvalidate.01" content="739186713FF906E181BE211DA0044094">
+<title>ms0101</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{--primary:#ffe500;--primary-hover:#ffed33;--primary-dark:#e6cc00;--bg-main:#0a0a0f;--bg-secondary:#1a1a24;--bg-card:rgba(26,26,36,0.8);--border:rgba(255,229,0,0.2);--border-hover:rgba(255,229,0,0.4);--text-primary:#ffffff;--text-secondary:#b4b4b8;--shadow:0 4px 20px rgba(0,0,0,0.3);--shadow-hover:0 8px 32px rgba(255,229,0,0.2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:linear-gradient(135deg,var(--bg-main) 0%,var(--bg-secondary) 100%);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.header{text-align:center;margin-bottom:3rem}
+.title{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;letter-spacing:-0.02em}
+.subtitle{font-size:1.125rem;color:var(--text-secondary);font-weight:400;letter-spacing:0.01em}
+.nav-container{display:flex;gap:1rem;margin-bottom:2rem;padding:0.5rem;background:var(--bg-card);border-radius:16px;border:1px solid var(--border);backdrop-filter:blur(10px)}
+.nav-btn{padding:0.875rem 2rem;border:none;background:transparent;color:var(--text-secondary);font-family:inherit;font-size:0.95rem;font-weight:500;border-radius:12px;cursor:pointer;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;letter-spacing:0.025em}
+.nav-btn:hover{color:var(--text-primary);background:rgba(255,229,0,0.1)}
+.nav-btn.active{background:var(--primary);color:var(--bg-main);box-shadow:var(--shadow-hover)}
+.nav-btn.active:hover{background:var(--primary-hover);transform:translateY(-1px)}
+.content-container{width:100%;max-width:800px;position:relative;min-height:500px;margin-bottom:2rem}
+.content-section{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(20px);transition:all 0.4s cubic-bezier(0.4,0,0.2,1);pointer-events:none}
+.content-section.show{opacity:1;transform:translateY(0);pointer-events:all}
+.content-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;backdrop-filter:blur(20px);box-shadow:var(--shadow);transition:all 0.3s ease}
+.content-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-hover)}
+.section-title{font-size:1.5rem;font-weight:600;color:var(--primary);margin-bottom:1.5rem;font-family:'JetBrains Mono',monospace;letter-spacing:-0.01em}
+.link-grid{display:grid;gap:0.75rem}
+.link-item{display:block;padding:1rem 1.5rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:var(--text-primary);text-decoration:none;font-size:1rem;font-weight:500;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;letter-spacing:0.01em}
+.link-item::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,229,0,0.1),transparent);transition:left 0.6s ease}
+.link-item:hover::before{left:100%}
+.link-item:hover{background:rgba(255,229,0,0.1);border-color:var(--border-hover);transform:translateX(8px);color:var(--primary)}
+.link-item:active{transform:translateX(4px) scale(0.98)}
+.link-description{font-size:0.875rem;color:var(--text-secondary);margin-top:0.25rem;font-weight:400}
+.footer{text-align:center;color:var(--text-secondary);font-size:0.875rem;opacity:0.7;padding-top:2rem}
+/* キーボードナビゲーション用のフォーカススタイル */
+.nav-btn:focus-visible,
+.link-item:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:2px;
+}
+@media (max-width:768px){
+  .container{padding:1.5rem}
+  .nav-container{flex-direction:column;gap:0.5rem}
+  .nav-btn{padding:0.75rem 1.5rem}
+  .content-card{padding:1.5rem}
+  .link-item{padding:0.875rem 1.25rem}
+}
+@media (max-width:480px){
+  .title{font-size:2.5rem}
+  .subtitle{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <h1 class="title">ms0101</h1>
+    <p class="subtitle">暇人同好会 - Digital Space</p>
+  </header>
+  <nav class="nav-container" role="tablist">
+    <button class="nav-btn active" onclick="showSection('page')" role="tab" aria-controls="page" aria-selected="true">Pages</button>
+    <button class="nav-btn" onclick="showSection('article')" role="tab" aria-controls="article" aria-selected="false">Articles</button>
+  </nav>
+  <main class="content-container">
+    <section class="content-section show" id="page" role="tabpanel" aria-labelledby="page-tab">
+      <div class="content-card">
+        <h2 class="section-title">// Pages</h2>
+        <div class="link-grid">
+          <a href="/ms0101" class="link-item">
+            ms0101's SPACE
+            <div class="link-description">can see ms0101's games and projects<br>Main Pageまずはココに</div>
+          </a>
+          <a href="/keijiban" class="link-item">
+            ms0101掲示板
+            <div class="link-description">Chat system operated by ms0101</div>
+          </a>
+          <a href="/raiprogram" class="link-item">
+            raiprogram
+            <div class="link-description">Raiprogram's Space</div>
+          </a>
+          <a href="https://a-b-c.3do1.jp/" class="link-item">
+            リンク集
+            <div class="link-description">Can see a list of shortcuts</div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="content-section" id="article" role="tabpanel" aria-labelledby="article-tab">
+      <div class="content-card">
+        <h2 class="section-title">// Articles</h2>
+        <div class="link-grid">
+          <a href="/topmovie" class="link-item">
+            ms0101's intro movie
+            <div class="link-description">can see ms0101's introduction movie</div>
+          </a>
+          <a href="/ClaudeSonnet4" class="link-item">
+            Claude まとめ
+            <div class="link-description">Review of ClaudeSonnet4</div>
+          </a>
+          <a href="/GPT5" class="link-item">
+            ChatGPT まとめ
+            <div class="link-description">Review of GPT5</div>
+          </a>
+          <a href="/隠しページ" class="link-item">
+            隠しページまとめ
+            <div class="link-description">Hidden pages compilation｛上海アリス幻樂団｝</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>©2025 ms0101 All Rights Reserved.</p>
+  </footer>
+</div>
+<script>
+let currentSection = 'page';
+function showSection(sectionId) {
+  if (currentSection === sectionId) return;
+  const currentBtn = document.querySelector('.nav-btn.active');
+  const newBtn = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+  currentBtn.classList.remove('active');
+  currentBtn.setAttribute('aria-selected', 'false');
+  newBtn.classList.add('active');
+  newBtn.setAttribute('aria-selected', 'true');
+  // セクションの切り替え
+  const currentEl = document.getElementById(currentSection);
+  currentEl.classList.remove('show');
+  setTimeout(() => {
+    const newEl = document.getElementById(sectionId);
+    newEl.classList.add('show');
+    currentSection = sectionId;
+  }, 150);
+}
+// キーボードナビゲーション
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    const sections = ['page', 'article'];
+    const currentIndex = sections.indexOf(currentSection);
+    const newIndex = e.key === 'ArrowLeft' 
+      ? (currentIndex - 1 + sections.length) % sections.length
+      : (currentIndex + 1) % sections.length;
+    showSection(sections[newIndex]);
+    document.querySelector(`[onclick="showSection('${sections[newIndex]}')"]`).focus();
+  }
+});
+// リンクにフォーカスした時のスムーズスクロール
+document.querySelectorAll('.link-item').forEach(link => {
+  link.addEventListener('focus', (e) => {
+    e.target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+});
+// ページ読み込み時の初期化
+document.addEventListener('DOMContentLoaded', () => {
+  const navButtons = document.querySelectorAll('.nav-btn');
+  navButtons.forEach((btn, index) => {
+    const sectionId = index === 0 ? 'page' : 'article';
+    btn.setAttribute('id', `${sectionId}-tab`);
+    btn.setAttribute('aria-controls', sectionId);
+  });
+});
+</script>
+</body>
+</html>
